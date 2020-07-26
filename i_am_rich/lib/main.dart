@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Center(
-        child: Text('Hello World!'),
+      home: Scaffold(
+        backgroundColor: Colors.teal[50],
+        appBar: AppBar(
+          title: Text('I am Super Rich!!'),
+          backgroundColor: Colors.cyan[800],
+        ),
+        body: Center(
+          child: Image(image: AssetImage('images/bismuth.jpg')),
+        ),
       ),
     ),
   );
