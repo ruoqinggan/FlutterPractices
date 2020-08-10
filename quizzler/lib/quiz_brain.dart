@@ -40,8 +40,24 @@ class QuizBrain {
   }
 
   void nextQuestion() {
-    if (_questionIndex < _questions.length - 1) {
+    if (_questionIndex < getSize() - 1) {
       _questionIndex++;
     }
+  }
+
+  bool isFinished() {
+    if (_questionIndex == getSize() - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _questionIndex = 0;
+  }
+
+  int getSize() {
+    return _questions.length;
   }
 }

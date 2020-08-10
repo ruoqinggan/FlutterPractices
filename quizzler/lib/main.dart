@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -29,26 +30,40 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
+  int points = 0;
+  int totalPoints = quizBrain.getSize();
 
   void checkAnswer(bool userPickedAnswer) {
     setState(() {
-      if (userPickedAnswer == quizBrain.getAnswer()) {
-        scoreKeeper.add(
-          Icon(
-            Icons.check,
-            color: Colors.green,
-          ),
-        );
+      if (quizBrain.isFinished()) {
+        Alert(
+                context: context,
+                title: "Congrats!!",
+                desc:
+                    "You've reached the end of the quiz with $points / $totalPoints!!")
+            .show();
+        quizBrain.reset();
+        scoreKeeper.clear();
+        points = 0;
       } else {
-        scoreKeeper.add(
-          Icon(
-            Icons.close,
-            color: Colors.red,
-          ),
-        );
+        if (userPickedAnswer == quizBrain.getAnswer()) {
+          points++;
+          scoreKeeper.add(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        } else {
+          scoreKeeper.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+        quizBrain.nextQuestion();
       }
-
-      quizBrain.nextQuestion();
     });
   }
 
@@ -91,7 +106,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                checkAnswer(false);
+                checkAnswer(true);
               },
             ),
           ),
