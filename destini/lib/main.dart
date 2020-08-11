@@ -41,7 +41,10 @@ class _StoryPageState extends State<StoryPage> {
                   child: Text(
                     storyBrain.getStory(),
                     style: TextStyle(
+                      fontFamily: 'GloriaHallelujah',
+                      fontWeight: FontWeight.w700,
                       fontSize: 25.0,
+                      height: 1.5,
                     ),
                   ),
                 ),
@@ -59,7 +62,10 @@ class _StoryPageState extends State<StoryPage> {
                   child: Text(
                     storyBrain.getChoice1(),
                     style: TextStyle(
+                      fontFamily: 'GloriaHallelujah',
+                      fontWeight: FontWeight.w800,
                       fontSize: 20.0,
+                      height: 1.5,
                     ),
                   ),
                 ),
@@ -82,7 +88,10 @@ class _StoryPageState extends State<StoryPage> {
                     child: Text(
                       storyBrain.getChoice2(),
                       style: TextStyle(
+                        fontFamily: 'GloriaHallelujah',
+                        fontWeight: FontWeight.w800,
                         fontSize: 20.0,
+                        height: 1.5,
                       ),
                     ),
                   ),
