@@ -20,44 +20,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  // Color nonbiCardColor = inactiveCardColor;
-  // Color femaleCardColor = inactiveCardColor;
-  // Color maleCardColor = inactiveCardColor;
-
-  // void updateColor(Gender gender) {
-  //   // nonbi card pressed
-  //   if (gender == Gender.nonbi) {
-  //     if (nonbiCardColor == inactiveCardColor) {
-  //       nonbiCardColor = activeCardColor;
-  //       femaleCardColor = inactiveCardColor;
-  //       maleCardColor = inactiveCardColor;
-  //     } else {
-  //       nonbiCardColor = inactiveCardColor;
-  //     }
-  //   }
-
-  //   // female card pressed
-  //   if (gender == Gender.female) {
-  //     if (femaleCardColor == inactiveCardColor) {
-  //       femaleCardColor = activeCardColor;
-  //       nonbiCardColor = inactiveCardColor;
-  //       maleCardColor = inactiveCardColor;
-  //     } else {
-  //       femaleCardColor = inactiveCardColor;
-  //     }
-  //   }
-
-  //   if (gender == Gender.male) {
-  //     if (maleCardColor == inactiveCardColor) {
-  //       maleCardColor = activeCardColor;
-  //       nonbiCardColor = inactiveCardColor;
-  //       femaleCardColor = inactiveCardColor;
-  //     } else {
-  //       maleCardColor = inactiveCardColor;
-  //     }
-  //   }
-  // }
-
   Gender selectedGender;
 
   @override
@@ -72,56 +34,50 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.nonbi;
                       });
                     },
-                    child: ReusableCard(
-                      cardColor: selectedGender == Gender.nonbi
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      cardChild: IconContent(
-                        iconData: FontAwesomeIcons.laugh,
-                        label: 'NON-BINARY',
-                      ),
+                    cardColor: selectedGender == Gender.nonbi
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      iconData: FontAwesomeIcons.laugh,
+                      label: 'NON-BINARY',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: ReusableCard(
-                      cardColor: selectedGender == Gender.female
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      cardChild: IconContent(
-                        iconData: FontAwesomeIcons.smileWink,
-                        label: 'FEMALE',
-                      ),
+                    cardColor: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      iconData: FontAwesomeIcons.smileWink,
+                      label: 'FEMALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
                     },
-                    child: ReusableCard(
-                      cardColor: selectedGender == Gender.male
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      cardChild: IconContent(
-                        iconData: FontAwesomeIcons.grinStars,
-                        label: 'MALE',
-                      ),
+                    cardColor: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      iconData: FontAwesomeIcons.grinStars,
+                      label: 'MALE',
                     ),
                   ),
                 ),
