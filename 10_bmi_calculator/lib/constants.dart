@@ -10,6 +10,11 @@ const kLabelNumStyle = TextStyle(
   fontWeight: FontWeight.w800,
 );
 
+const kBottomContainerText = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.w700,
+);
+
 const kThemePrimaryColor = Color(0xFF0A0E21);
 const kBottomContainerHeight = 80.0;
 const kActiveCardColor = Color(0xFF1D1E33);

@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_card_layout.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
-import 'round_icon_button.dart';
 import 'button_card_layout.dart';
+import 'bottom_container.dart';
 
 enum Gender {
   nonbi,
@@ -172,11 +172,13 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            height: 80.0,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 10.0),
-            color: kBottomContainerColor,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/first');
+            },
+            child: BottomContainer(
+              label: 'CALCULATE',
+            ),
           ),
         ],
       ),
