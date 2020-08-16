@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-class IconContent extends StatelessWidget {
+class IconCardLayout extends StatelessWidget {
   final IconData iconData;
   final String label;
 
-  IconContent({@required this.iconData, @required this.label});
+  IconCardLayout({@required this.iconData, @required this.label});
 
   @override
   Widget build(BuildContext context) {

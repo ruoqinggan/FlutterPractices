@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
+import 'icon_card_layout.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'round_icon_button.dart';
+import 'button_card_layout.dart';
 
 enum Gender {
   nonbi,
@@ -19,6 +21,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 160;
   int weight = 80;
+  int age = 40;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class _InputPageState extends State<InputPage> {
                     cardColor: selectedGender == Gender.nonbi
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    cardChild: IconContent(
+                    cardChild: IconCardLayout(
                       iconData: FontAwesomeIcons.laugh,
                       label: 'NON-BINARY',
                     ),
@@ -57,7 +60,7 @@ class _InputPageState extends State<InputPage> {
                     cardColor: selectedGender == Gender.female
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    cardChild: IconContent(
+                    cardChild: IconCardLayout(
                       iconData: FontAwesomeIcons.smileWink,
                       label: 'FEMALE',
                     ),
@@ -73,7 +76,7 @@ class _InputPageState extends State<InputPage> {
                     cardColor: selectedGender == Gender.male
                         ? kActiveCardColor
                         : kInactiveCardColor,
-                    cardChild: IconContent(
+                    cardChild: IconCardLayout(
                       iconData: FontAwesomeIcons.grinStars,
                       label: 'MALE',
                     ),
@@ -129,57 +132,41 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     cardColor: kActiveCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'WEIGHT',
-                          style: kLabelTextStyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Text(
-                              '$weight',
-                              style: kLabelNumStyle,
-                            ),
-                            Text(
-                              ' KG',
-                              style: kLabelTextStyle,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              backgroundColor: kButtonColor,
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            FloatingActionButton(
-                              backgroundColor: kButtonColor,
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                    cardChild: ButtonCardLayout(
+                      label: 'WEIGHT',
+                      unit: ' KG',
+                      value: weight,
+                      onPressOne: () {
+                        setState(() {
+                          weight--;
+                        });
+                      },
+                      onPressTwo: () {
+                        setState(() {
+                          weight++;
+                        });
+                      },
                     ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     cardColor: kActiveCardColor,
+                    cardChild: ButtonCardLayout(
+                      label: 'AGE',
+                      unit: '',
+                      value: age,
+                      onPressOne: () {
+                        setState(() {
+                          age--;
+                        });
+                      },
+                      onPressTwo: () {
+                        setState(() {
+                          age++;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ],
