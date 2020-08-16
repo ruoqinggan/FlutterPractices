@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-
-const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const bottomContainerColor = Color(0xFFEB1555);
+import 'constants.dart';
 
 enum Gender {
   nonbi,
@@ -21,6 +17,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int height = 160;
+  int weight = 80;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +39,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     cardColor: selectedGender == Gender.nonbi
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: IconContent(
                       iconData: FontAwesomeIcons.laugh,
                       label: 'NON-BINARY',
@@ -57,8 +55,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     cardColor: selectedGender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: IconContent(
                       iconData: FontAwesomeIcons.smileWink,
                       label: 'FEMALE',
@@ -73,8 +71,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     cardColor: selectedGender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: IconContent(
                       iconData: FontAwesomeIcons.grinStars,
                       label: 'MALE',
@@ -86,7 +84,43 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              cardColor: activeCardColor,
+              cardColor: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kLabelNumStyle,
+                      ),
+                      Text(
+                        ' CM',
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    min: 120.0,
+                    max: 250.0,
+                    divisions: 130,
+                    value: height.toDouble(),
+                    inactiveColor: kLabelTextColor,
+                    onChanged: (double value) {
+                      setState(() {
+                        height = value.toInt();
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -94,12 +128,58 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    cardColor: activeCardColor,
+                    cardColor: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              '$weight',
+                              style: kLabelNumStyle,
+                            ),
+                            Text(
+                              ' KG',
+                              style: kLabelTextStyle,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              backgroundColor: kButtonColor,
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            FloatingActionButton(
+                              backgroundColor: kButtonColor,
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    cardColor: activeCardColor,
+                    cardColor: kActiveCardColor,
                   ),
                 ),
               ],
@@ -109,7 +189,7 @@ class _InputPageState extends State<InputPage> {
             height: 80.0,
             width: double.infinity,
             margin: EdgeInsets.only(top: 10.0),
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
           ),
         ],
       ),
