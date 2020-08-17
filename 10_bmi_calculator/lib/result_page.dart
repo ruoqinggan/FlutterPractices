@@ -18,17 +18,20 @@ class ResultPage extends StatelessWidget {
             child: ReusableCard(
               cardColor: kActiveCardColor,
               cardChild: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'normal',
-                    style: kBottomContainerText,
+                    style: kBMIStatusText,
                   ),
                   Text(
                     '19.0',
+                    style: kLabelNumStyle,
                   ),
                   Text(
-                    'You have a xxx body weight.',
+                    'You have a xxxxx body weight.',
+                    style: kLabelTextStyle,
                   ),
                 ],
               ),

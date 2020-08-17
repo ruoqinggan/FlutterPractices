@@ -19,7 +19,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
-  int height = 160;
+  int height = 180;
   int weight = 80;
   int age = 40;
 
@@ -92,33 +92,22 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'HEIGHT',
+                    'AGE',
                     style: kLabelTextStyle,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Text(
-                        height.toString(),
-                        style: kLabelNumStyle,
-                      ),
-                      Text(
-                        ' CM',
-                        style: kLabelTextStyle,
-                      ),
-                    ],
+                  Text(
+                    age.toString(),
+                    style: kLabelNumStyle,
                   ),
                   Slider(
-                    min: 120.0,
-                    max: 250.0,
-                    divisions: 130,
-                    value: height.toDouble(),
+                    min: 10.0,
+                    max: 110.0,
+                    divisions: 100,
+                    value: age.toDouble(),
                     inactiveColor: kLabelTextColor,
                     onChanged: (double value) {
                       setState(() {
-                        height = value.toInt();
+                        age = value.toInt();
                       });
                     },
                   ),
@@ -153,17 +142,17 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     cardColor: kActiveCardColor,
                     cardChild: ButtonCardLayout(
-                      label: 'AGE',
-                      unit: '',
-                      value: age,
+                      label: 'HEIGHT',
+                      unit: ' CM',
+                      value: height,
                       onPressOne: () {
                         setState(() {
-                          age--;
+                          height--;
                         });
                       },
                       onPressTwo: () {
                         setState(() {
-                          age++;
+                          height++;
                         });
                       },
                     ),
