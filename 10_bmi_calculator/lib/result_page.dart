@@ -4,6 +4,15 @@ import 'constants.dart';
 import 'bottom_container.dart';
 
 class ResultPage extends StatelessWidget {
+  
+  double bmiValue;
+  
+  ResultPage({int age, int height, int weight}) {
+    bmiValue = (weight.toDouble() /
+        ((height.toDouble() / 100) * (height.toDouble() / 100)));
+
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +35,7 @@ class ResultPage extends StatelessWidget {
                     style: kBMIStatusText,
                   ),
                   Text(
-                    '19.0',
+                    '$bmiValue',
                     style: kLabelNumStyle,
                   ),
                   Text(
