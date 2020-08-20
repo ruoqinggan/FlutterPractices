@@ -18,7 +18,7 @@ const kBottomContainerText = TextStyle(
 const kBMIStatusText = TextStyle(
   fontSize: 25.0,
   fontWeight: FontWeight.bold,
-  color: Colors.green,
+  color: Color(0xFF24D876),
 );
 
 const kThemePrimaryColor = Color(0xFF0A0E21);
