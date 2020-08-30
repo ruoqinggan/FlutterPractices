@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:clima/services/location.dart';
 import '../services/location.dart';
 import '../services/networking.dart';
-import '../services/networking.dart';
-import '../services/networking.dart';
 import '../screens/location_screen.dart';
 import 'location_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = '06cf79b723b8399c2630af3283a4af0b';
+const unit = 'metric';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -15,9 +15,6 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  double latitude;
-  double longitude;
-
   @override
   void initState() {
     super.initState();
@@ -25,18 +22,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
-    Location currentLocation = Location();
-    await currentLocation.getCurrentLocation();
-    latitude = currentLocation.latitude;
-    longitude = currentLocation.longitude;
+    Location location = Location();
+    await location.getCurrentLocation();
 
     NetworkHelper networkHelper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
+        'https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=$unit');
 
     var weatherData = await networkHelper.getData();
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LocationScreen();
+      return LocationScreen(
+        locationWeather: weatherData,
+      );
     }));
   }
 
@@ -44,11 +41,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            //Get the current location
-          },
-          child: Text('Get Location'),
+        child: SpinKitPumpingHeart(
+          color: Colors.red,
+          size: 100.0,
         ),
       ),
     );
